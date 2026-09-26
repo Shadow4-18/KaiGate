@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="docs/readme.html"><strong>Open the visual brief</strong></a>
+  <a href="https://shadow4-18.github.io/KaiGate/"><strong>Open the visual brief</strong></a>
   ·
   <a href="docs/HARDWARE.md">Hardware</a>
   ·
