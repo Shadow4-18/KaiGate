@@ -1,0 +1,42 @@
+#pragma once
+
+#include "pins.h"
+
+#define KAIGATE_DEVICE_NAME "KaiGate"
+#define KAIGATE_WIFI_SSID "KaiGate_Setup"
+#define KAIGATE_WIFI_PASS "kaigate32"
+#define KAIGATE_WIFI_IP_STR "192.168.4.1"
+
+#define DISPLAY_HZ 30
+#define IMU_HZ 100
+#define OBD_POLL_HZ 10
+#define TELEMETRY_HZ 10
+#define CAL_IMU_HZ 20
+
+#define LOCK_LONG_PRESS_MS 2000
+#define LOCK_IDLE_RELOCK_MS 10000
+#define IDLE_MASCOT_MS 30000
+#define BOOST_PEAK_HOLD_MS 3000
+#define SHIFT_STROBE_MS 180
+
+#define COLD_SHIFT_RPM_DEFAULT 3500
+#define COLD_COOLANT_F_DEFAULT 180
+#define REDLINE_DEFAULT 7200
+#define SHIFT_LIGHT_DEFAULT 6800
+#define REDLINE_MIN 4000
+#define REDLINE_MAX 9500
+
+#define GATE_RADIUS_DEG_DEFAULT 9.0f
+#define STICK_WAKE_GYRO_DPS 40.0f
+#define STATIONARY_SPEED_MPH 0.5f
+#define IDLE_RPM_MAX 1100
+
+#define BAT_VDIV_RATIO 2.0f
+#define BAT_EMPTY_V 3.30f
+#define BAT_FULL_V 4.18f
+
+#define LITTLEFS_BOOT_GIF "/boot.gif"
+#define LITTLEFS_IDLE_GIF "/idle.gif"
+#define LITTLEFS_WALLPAPER "/wallpaper.bin"
+
+#define LVGL_BUFFER_LINES 40

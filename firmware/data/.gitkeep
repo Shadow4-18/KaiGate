@@ -1,0 +1,6 @@
+# Place user media here. Filenames are fixed:
+#   /boot.gif         circular boot animation (optional)
+#   /idle.gif         idle mascot, shown after 30s in neutral
+#   /wallpaper.bin    466x466 RGB565 LE framebuffer (434,312 bytes)
+#
+# Upload with:  pio run -t uploadfs -d firmware

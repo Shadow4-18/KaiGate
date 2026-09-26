@@ -1,0 +1,32 @@
+.pio/
+.vscode/.browse.c_cpp.db*
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/ipch
+.idea/
+.DS_Store
+Thumbs.db
+*.pyc
+__pycache__/
+
+# Flutter
+app/kaigate/.dart_tool/
+app/kaigate/.packages
+app/kaigate/.flutter-plugins
+app/kaigate/.flutter-plugins-dependencies
+app/kaigate/.pub-cache/
+app/kaigate/.pub/
+app/kaigate/build/
+app/kaigate/ios/Pods/
+app/kaigate/ios/.symlinks/
+app/kaigate/android/.gradle/
+app/kaigate/android/local.properties
+app/kaigate/android/app/debug/
+app/kaigate/android/app/profile/
+app/kaigate/android/app/release/
+
+# Secrets / local
+.env
+*.pem
+*.p12
+secrets.h

@@ -1,0 +1,33 @@
+name: kaigate
+description: KaiGate companion app — configure, calibrate, and dress the smart shift knob.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_blue_plus: ^1.35.5
+  provider: ^6.1.2
+  shared_preferences: ^2.3.3
+  image_picker: ^1.1.2
+  image: ^4.3.0
+  http: ^1.2.2
+  path_provider: ^2.1.5
+  permission_handler: ^11.3.1
+  google_fonts: ^6.2.1
+  collection: ^1.18.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/branding/kaigate_wordmark.png
+    - assets/branding/kaigate_seal.png

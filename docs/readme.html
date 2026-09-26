@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KaiGate — Smart Shift Knob</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #000000;
+      --card: #121212;
+      --line: #1a1a1a;
+      --red: #e10600;
+      --amber: #ffb000;
+      --mist: #b9b9b9;
+      --white: #f5f5f5;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--black); color: var(--mist); }
+    body {
+      font-family: "DM Sans", sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    h1, h2, h3, .display {
+      font-family: "Bebas Neue", sans-serif;
+      color: var(--white);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      margin: 0;
+    }
+    a { color: var(--amber); text-decoration: none; }
+    a:hover { color: var(--white); }
+    .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    header.hero {
+      padding: 64px 0 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+    }
+    header.hero img.seal { width: min(240px, 56vw); height: auto; display: block; margin: 0 auto; }
+    header.hero img.word { width: min(380px, 78vw); height: auto; display: block; margin: 22px auto 14px; }
+    .eyebrow {
+      letter-spacing: 0.42em;
+      font-size: 11px;
+      color: var(--mist);
+      text-transform: uppercase;
+    }
+    .lede {
+      max-width: 36rem;
+      margin: 18px auto 0;
+      color: var(--white);
+      font-size: 16px;
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 22px;
+      margin-top: 28px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+    nav a { color: var(--mist); }
+    nav a:hover { color: var(--red); }
+    section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+    .kicker {
+      color: var(--red);
+      font-size: 12px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h2 { font-size: 40px; line-height: 0.95; margin-bottom: 16px; }
+    h3 { font-size: 22px; margin: 0 0 6px; }
+    .grid-5, .grid-3, .grid-2, .screens { display: grid; gap: 14px; }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 16px;
+    }
+    .card .tag { color: var(--amber); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+    .card p { margin: 8px 0 0; }
+    .screens { grid-template-columns: repeat(7, 1fr); }
+    .disc {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 3px solid var(--red);
+      background: #0a0000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+    }
+    .disc strong {
+      font-family: "Bebas Neue", sans-serif;
+      color: var(--white);
+      font-size: 22px;
+      letter-spacing: 0.06em;
+    }
+    .disc span { font-size: 11px; color: var(--mist); margin-top: 4px; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+    ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    ol.steps li {
+      counter-increment: step;
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    ol.steps li::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: "Bebas Neue", sans-serif;
+      color: var(--red);
+      font-size: 22px;
+      line-height: 1.2;
+    }
+    pre, code {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-size: 12.5px;
+    }
+    pre {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 18px;
+      overflow: auto;
+      color: var(--white);
+      margin: 0;
+    }
+    .tree { white-space: pre; line-height: 1.45; color: var(--mist); }
+    footer {
+      padding: 36px 0 56px;
+      text-align: center;
+      font-size: 12px;
+    }
+    footer img { width: 72px; height: auto; display: block; margin: 0 auto 12px; }
+    @media (max-width: 1100px) {
+      .grid-5, .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .screens { grid-template-columns: repeat(4, 1fr); }
+      .grid-2, .split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      h2 { font-size: 32px; }
+      .grid-5, .grid-3 { grid-template-columns: 1fr; }
+      .screens { grid-template-columns: repeat(2, 1fr); }
+      header.hero { padding-top: 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <img class="seal" src="../app/kaigate/assets/branding/kaigate_seal.png" alt="KaiGate 改 seal">
+      <img class="word" src="../app/kaigate/assets/branding/kaigate_wordmark.png" alt="KaiGate">
+      <p class="eyebrow">Smart shift knob</p>
+      <p class="lede">Universal commercial smart knob. ESP32-S3 firmware on a 466×466 circular AMOLED, plus the KaiGate companion app for Android and iOS.</p>
+      <nav>
+        <a href="#stack">Stack</a>
+        <a href="#glass">Glass</a>
+        <a href="#app">App</a>
+        <a href="#radio">Radio</a>
+        <a href="#bringup">Bring-up</a>
+        <a href="#repo">Repo</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="stack">
+    <div class="wrap">
+      <p class="kicker">Hardware</p>
+      <h2>What ships on the knob</h2>
+      <div class="grid-5">
+        <article class="card">
+          <div class="tag">Display</div>
+          <h3>AMOLED 1.32</h3>
+          <p>Waveshare ESP32-S3-Touch-AMOLED. CO5300 QSPI, CST820 touch, ES8311 speaker path, LiPo gauge.</p>
+        </article>
+        <article class="card">
+          <div class="tag">IMU</div>
+          <h3>MPU-6050</h3>
+          <p>Pitch and roll H-gate clustering plus a live two-axis G-meter. Address 0x68 on I2C0.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Haptics</div>
+          <h3>DRV2605L</h3>
+          <p>1027 coin ERM. Shift double-pulse and money-shift alert. Address 0x5A.</p>
+        </article>
+        <article class="card">
+          <div class="tag">OBD</div>
+          <h3>iCar Pro</h3>
+          <p>Vgate BLE / ELM327. RPM, speed, coolant, boost, IAT, voltage, DTCs.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Phone</div>
+          <h3>KaiGate app</h3>
+          <p>GATT configurator, calibration wizard, circular lens studio, telemetry and DTC hub.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="glass">
+    <div class="wrap">
+      <p class="kicker">On-glass UI</p>
+      <h2>Seven screens around the rim</h2>
+      <div class="screens">
+        <div class="disc"><strong>Tach</strong><span>Gear + arc</span></div>
+        <div class="disc"><strong>Vitals</strong><span>Boost / CLT</span></div>
+        <div class="disc"><strong>G-meter</strong><span>Live bubble</span></div>
+        <div class="disc"><strong>Timers</strong><span>0–60 / shift</span></div>
+        <div class="disc"><strong>Lens</strong><span>GIF / wall</span></div>
+        <div class="disc"><strong>Media</strong><span>Transport</span></div>
+        <div class="disc"><strong>DTC</strong><span>Clear codes</span></div>
+      </div>
+      <div class="grid-2" style="margin-top: 28px;">
+        <article class="card">
+          <div class="tag">Lock</div>
+          <h3>Production rules</h3>
+          <p>2 s long-press toggles lock. Auto-relock after 10 s idle while stationary. Swipes die if speed is over 0.5 mph or a gear is in. Cold limiter holds the shift light at 3,500 RPM until coolant is 180 °F. Both values are live-tunable from the app.</p>
+        </article>
+        <article class="card">
+          <div class="tag">Safety</div>
+          <h3>Strobe and money-shift</h3>
+          <p>Full-circle red/white flash, DRV2605L double-pulse, ES8311 beep. Money-shift compares predicted post-downshift RPM to redline using stored mph/rpm ratios. Idle mascot fades to /idle.gif after 30 s in neutral.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="app">
+    <div class="wrap">
+      <p class="kicker">Companion</p>
+      <h2>KaiGate on the phone</h2>
+      <div class="grid-3">
+        <article class="card"><div class="tag">Tune</div><h3>Redline and themes</h3><p>4,000–9,500 RPM, shift light, cold limiter, brightness. JDM Amber, Euro Sport, Monochrome, Cyberpunk Neon. 5-speed, 6-speed, dog-leg.</p></article>
+        <article class="card"><div class="tag">Calibrate</div><h3>IMU gate wizard</h3><p>Live pitch and roll. Eight NVS clusters for N, 1–6, R. Confirmation uses speed/RPM while the engine is pulling.</p></article>
+        <article class="card"><div class="tag">Media</div><h3>Now playing</h3><p>Play, skip, volume. Cover art and title from the phone session. Mirrors the knob media screen over BLE.</p></article>
+        <article class="card"><div class="tag">Studio</div><h3>466 × 466 lens</h3><p>Pan, zoom, auto-crop. Push GIF and wallpaper over SoftAP KaiGate_Setup / kaigate32 into LittleFS.</p></article>
+        <article class="card"><div class="tag">Telemetry</div><h3>0–60 history</h3><p>Live vitals plus stored runs. Same packet the glass uses.</p></article>
+        <article class="card"><div class="tag">Diagnostics</div><h3>Plain-English DTCs</h3><p>Stored codes from the Vgate dongle. Touch CLEAR runs ELM mode 04.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="radio">
+    <div class="wrap split">
+      <div>
+        <p class="kicker">Radio</p>
+        <h2>One chip, two BLE roles</h2>
+        <p>NimBLE dual-role: GATT peripheral for the phone, BLE central for the Vgate dongle at the same time. Large GIF and wallpaper transfers raise SoftAP <strong style="color:#f5f5f5">KaiGate_Setup</strong>.</p>
+      </div>
+      <pre>Service  8f400001-7a3b-4c2d-9e1f-0a1b2c3d4e5f
+Tel      8f400002  telemetry notify
+Cfg      8f400003  config read/write
+Cmd      8f400004  command write
+IMU      8f400005  pitch/roll notify
+DTC      8f400006  codes notify
+Status   8f400007  wifi / lock
+Media    8f400008  now-playing</pre>
+    </div>
+  </section>
+
+  <section id="bringup">
+    <div class="wrap split">
+      <div>
+        <p class="kicker">First drive</p>
+        <h2>Bring-up</h2>
+        <ol class="steps">
+          <li>Wire MPU-6050 and DRV2605L on I2C0 (GPIO 47/48). See HARDWARE.md.</li>
+          <li>Fit a 1027 coin motor and a speaker on the MX1.25 header.</li>
+          <li>Flash firmware. Serial should print CST820, MPU-6050, DRV2605L, ES8311.</li>
+          <li>Pair Vgate iCar Pro with ignition on. Knob scans for Vgate / iCar / OBD.</li>
+          <li>Open KaiGate, connect, run Calibrate in the driveway.</li>
+          <li>Set redline and theme. Optional: Lens Studio → KaiGate_Setup → push idle GIF.</li>
+        </ol>
+      </div>
+      <div>
+        <p class="kicker">Firmware</p>
+        <h2>Flash</h2>
+        <pre>cd firmware
+pio run -t upload
+pio run -t uploadfs
+pio device monitor</pre>
+        <p style="margin-top:18px" class="kicker">App</p>
+        <h2>Install</h2>
+        <pre>scripts\bootstrap_flutter.cmd
+cd app\kaigate
+flutter run
+:: or flutter build apk</pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="repo">
+    <div class="wrap">
+      <p class="kicker">Tree</p>
+      <h2>Repository</h2>
+      <pre class="tree">KaiGate/
+├── branding/                 official logos
+├── docs/                     hardware + BLE + this page
+├── firmware/                 PlatformIO, LVGL 8, LittleFS
+│   ├── include/              pins, protocol, types
+│   └── src/                  hal, core, ble, net, media, ui
+├── app/kaigate/              Flutter companion
+└── scripts/                  bootstrap_flutter.cmd</pre>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <img src="../app/kaigate/assets/branding/kaigate_seal.png" alt="">
+      <p>KaiGate product firmware and companion source. Validate haptic current, speaker SPL, and AMOLED brightness against the enclosure thermal budget before a production spin.</p>
+      <p><a href="../README.md">Plain README</a> · <a href="HARDWARE.md">Hardware</a> · <a href="BLE_PROTOCOL.md">BLE protocol</a></p>
+    </div>
+  </footer>
+</body>
+</html>
